@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body id="google_translate_element">
+
+    <header class="main-header-container">
+        <h1>
+            A website where you can generate your own password
+        </h1>
+    </header>
+
+    <main class="main-body-container">
+        <section>
+            <header>
+                <h2>Get Your Password</h2>
+            </header>
+
+            <form class="password-generator-main-container">
+                <fieldset>
+                    <label for="generated-password">
+                        Generated Password
+                    </label>
+
+                    <input type="text" id="inputGeneratedPassword" readonly placeholder="Click 'Generate' to start">
+
+                    <small class="password-note">
+                        This password is automatically generated as a suggestion. It should be reviewed before using it
+                        for important accounts.
+                    </small>
+                </fieldset>
+
+                <button type="button" id="btnGeneratePassword">
+                    Generate
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        Website Open Source
+    </footer>
+    <script type="module" src="../js/index.js"></script>
+</body>
+
+</html>
