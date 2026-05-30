@@ -1,5 +1,5 @@
 const WORDS_CACHE_KEY = "words_";
-const WORDS_SOURCE_PATH = "../json/wordList.json";
+const WORDS_SOURCE_PATH = "./json/wordList.json";
 
 /**
  * Carga y almacena las palabras en caché si aún no existen.
