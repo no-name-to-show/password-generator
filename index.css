@@ -160,7 +160,10 @@ body {
 footer {
     text-align: center;
     padding: 2rem;
-
-    color: #64748b;
-    font-size: 0.9rem;
+    a{
+        color: #64748b;
+        font-size: 0.9rem;
+        cursor: pointer;
+        text-decoration: none;
+    }
 }
