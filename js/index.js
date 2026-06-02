@@ -1,9 +1,11 @@
 import { setDataToGeneratePassword, getWords } from "./getData.js";
 import { generatePassword } from "./utility/textUtils.js";
+import { alertContainer } from "./container/alert-container.js";
 
 const DOM_IDS = {
     GENERATE_BUTTON: "btnGeneratePassword",
     PASSWORD_INPUT: "inputGeneratedPassword",
+    BODY_CONTAINER: "bodyContainer",
 };
 
 const dom = initializeDom();
@@ -25,7 +27,13 @@ function initializeDom() {
         DOM_IDS.PASSWORD_INPUT
     );
 
-    if (!generateButton || !passwordInput) {
+    const bodyContainer = document.getElementById(
+        DOM_IDS.BODY_CONTAINER
+    );
+
+
+
+    if (!generateButton || !passwordInput || !bodyContainer) {
         throw new Error(
             "No fue posible inicializar los elementos requeridos del DOM."
         );
@@ -34,6 +42,7 @@ function initializeDom() {
     return {
         generateButton,
         passwordInput,
+        bodyContainer,
     };
 }
 
@@ -45,7 +54,9 @@ function initializeDom() {
 async function copyToClipboard(text) {
     try {
         await navigator.clipboard.writeText(text);
-        showToast("Password copied to clipboard!");
+        dom.bodyContainer.appendChild(
+            alertContainer("Password copied to clipboard!")
+        );
     } catch (error) {
         console.error(
             "No fue posible copiar la contraseña al portapapeles:",

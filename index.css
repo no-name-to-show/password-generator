@@ -169,24 +169,20 @@ a {
 
 .alert-container {
     position: fixed;
-    top: 2rem;
-    right: 2rem;
+    bottom: 1rem;
+    left: 50%;
     padding: 0.875rem 1.25rem;
-    background: #0f172a;
+    background: #1c2a4b;
     color: #f8fafc;
     border-radius: 0.75rem;
     font-size: 0.9rem;
     font-weight: 500;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    transform: translateY(10px);
-    opacity: 0;
-    visibility: hidden;
-
+    transform: translateX(-50%);
     transition:
         opacity 0.25s ease,
         transform 0.25s ease,
         visibility 0.25s ease;
-
     pointer-events: none;
 }
 
@@ -198,7 +194,7 @@ a {
 
 .alert-container p {
     margin: 0;
-}   
+}
 
 footer {
     text-align: center;
