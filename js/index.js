@@ -38,9 +38,26 @@ function initializeDom() {
 }
 
 /**
- * Genera una contraseña y la muestra en pantalla.
+ * Copia texto al portapapeles.
+ *
+ * @param {string} text
  */
-function handleGeneratePassword() {
+async function copyToClipboard(text) {
+    try {
+        await navigator.clipboard.writeText(text);
+        showToast("Password copied to clipboard!");
+    } catch (error) {
+        console.error(
+            "No fue posible copiar la contraseña al portapapeles:",
+            error
+        );
+    }
+}
+
+/**
+ * Genera una contraseña, la muestra en pantalla y la copia al portapapeles.
+ */
+async function handleGeneratePassword() {
     const words = getWords();
 
     if (words.length === 0) {
@@ -50,7 +67,9 @@ function handleGeneratePassword() {
         return;
     }
 
-    dom.passwordInput.value = generatePassword(words);
+    const password = generatePassword(words);
+
+    dom.passwordInput.value = password;
 }
 
 /**
@@ -60,6 +79,11 @@ function registerEvents() {
     dom.generateButton.addEventListener(
         "click",
         handleGeneratePassword
+    );
+
+    dom.passwordInput.addEventListener(
+        "click",
+        () => copyToClipboard(dom.passwordInput.value)
     );
 }
 

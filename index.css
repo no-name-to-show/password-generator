@@ -157,13 +157,52 @@ body {
     }
 }
 
+a {
+    color: #64748b;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.form-menu {
+    display: flex;
+    justify-content: space-between;
+}
+
+.alert-container {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    padding: 0.875rem 1.25rem;
+    background: #0f172a;
+    color: #f8fafc;
+    border-radius: 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(10px);
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+
+    pointer-events: none;
+}
+
+.alert-container.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.alert-container p {
+    margin: 0;
+}   
+
 footer {
     text-align: center;
     padding: 2rem;
-    a{
-        color: #64748b;
-        font-size: 0.9rem;
-        cursor: pointer;
-        text-decoration: none;
-    }
 }

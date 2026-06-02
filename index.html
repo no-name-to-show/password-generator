@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Password Generator | Secure & Memorable Password Creator</title>
+    <title>Secure Password Generator | Open Source Password Creator</title>
 
     <meta name="description"
         content="Generate secure, memorable, and customizable passwords instantly. Free and open-source password generator focused on security and usability.">
@@ -45,13 +45,19 @@
     <link rel="stylesheet" href="index.css">
 </head>
 
-<body id="google_translate_element">
+<body>
 
     <header class="main-header-container">
         <h1>
             A website where you can generate your own password
         </h1>
     </header>
+
+    <div class="alert-container">
+        <p id="txtAlertContainer">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus aspernatur eos exercitationem ab? Assumenda nemo pariatur sapiente perspiciatis alias reprehenderit iure ut illum, numquam rem non deleniti expedita minus debitis.
+        </p>
+    </div>
 
     <main class="main-body-container">
         <section>
@@ -61,9 +67,23 @@
 
             <form class="password-generator-main-container">
                 <fieldset>
-                    <label for="generated-password">
-                        Generated Password
-                    </label>
+                    <div class="form-menu">
+                        <label for="generated-password">
+                            Generated Password
+                        </label>
+                        <a href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-file-upload">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                                <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2" />
+                                <path d="M12 11v6" />
+                                <path d="M9.5 13.5l2.5 -2.5l2.5 2.5" />
+                            </svg>
+                        </a>
+                    </div>
 
                     <input type="text" id="inputGeneratedPassword" readonly placeholder="Click 'Generate' to start">
 
@@ -82,7 +102,7 @@
 
     <footer>
         <a href="https://github.com/no-name-to-show/password-generator" target="_blank" rel="noopener noreferrer">
-            Website Open Source
+            Open Source on GitHub
         </a>
     </footer>
     <script type="module" src="./js/index.js"></script>
