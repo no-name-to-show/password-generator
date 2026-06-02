@@ -96,15 +96,11 @@ body {
         input {
             background: #020617;
             color: white;
-
             border: 1px solid #334155;
             border-radius: 14px;
-
             padding: 1rem;
             font-size: 1rem;
-
             transition: 0.3s ease;
-
             cursor: pointer;
 
             &:focus {
