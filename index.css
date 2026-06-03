@@ -186,10 +186,12 @@ a {
     pointer-events: none;
 }
 
-.alert-container.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+.alert-container.succes {
+    background: #1a7b5a;
+}
+
+.alert-container.error {
+    background: #a2463c;
 }
 
 .alert-container p {

@@ -1,6 +1,6 @@
 import { setDataToGeneratePassword, getWords } from "./getData.js";
 import { generatePassword } from "./utility/textUtils.js";
-import { alertContainer } from "./container/alert-container.js";
+import { alertContainer, alertErrorContainer } from "./container/alert-container.js";
 
 const DOM_IDS = {
     GENERATE_BUTTON: "btnGeneratePassword",
@@ -53,14 +53,18 @@ function initializeDom() {
  */
 async function copyToClipboard(text) {
     try {
+        if (!text?.trim()) {
+            throw new Error("Empty password");
+        }
+
         await navigator.clipboard.writeText(text);
+
         dom.bodyContainer.appendChild(
             alertContainer("Password copied to clipboard!")
         );
-    } catch (error) {
-        console.error(
-            "No fue posible copiar la contraseña al portapapeles:",
-            error
+    } catch {
+        dom.bodyContainer.appendChild(
+            alertErrorContainer("Failed to copy password to clipboard.")
         );
     }
 }
