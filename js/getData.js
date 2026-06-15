@@ -75,8 +75,6 @@ function hasWordsCache() {
 
 /**
  * Se borra la data antigua y se setea la nueva
- *
- * 
  */
 
 export function clearData(){
