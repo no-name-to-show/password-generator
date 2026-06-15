@@ -71,3 +71,15 @@ function saveWords(words) {
 function hasWordsCache() {
     return localStorage.getItem(WORDS_CACHE_KEY) !== null;
 }
+
+
+/**
+ * Se borra la data antigua y se setea la nueva
+ *
+ * 
+ */
+
+export function clearData(){
+    localStorage.clear();
+    setDataToGeneratePassword();
+}

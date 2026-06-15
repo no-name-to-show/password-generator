@@ -5,7 +5,7 @@ const LEET_REPLACEMENTS = {
     o: "0",
 };
 
-const PASSWORD_SYMBOLS = ["!", "@", "#", "$", "%", "&", "*"];
+const PASSWORD_SYMBOLS = ["@", "#", "$", "%", "&", "*"];
 
 const MIN_PASSWORD_LENGTH = 12;
 const UPPERCASE_PROBABILITY = 0.3;

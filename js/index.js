@@ -1,4 +1,4 @@
-import { setDataToGeneratePassword, getWords } from "./getData.js";
+import { setDataToGeneratePassword, getWords, clearData } from "./getData.js";
 import { generatePassword } from "./utility/textUtils.js";
 import { alertContainer, alertErrorContainer } from "./container/alert-container.js";
 
@@ -6,6 +6,7 @@ const DOM_IDS = {
     GENERATE_BUTTON: "btnGeneratePassword",
     PASSWORD_INPUT: "inputGeneratedPassword",
     BODY_CONTAINER: "bodyContainer",
+    CLEAR_CACHE: "clearWebCache"
 };
 
 const dom = initializeDom();
@@ -31,9 +32,13 @@ function initializeDom() {
         DOM_IDS.BODY_CONTAINER
     );
 
+    const clearCacheButton = document.getElementById(
+        DOM_IDS.CLEAR_CACHE
+    )
 
 
-    if (!generateButton || !passwordInput || !bodyContainer) {
+
+    if (!generateButton || !passwordInput || !bodyContainer || !clearCacheButton) {
         throw new Error(
             "No fue posible inicializar los elementos requeridos del DOM."
         );
@@ -43,6 +48,7 @@ function initializeDom() {
         generateButton,
         passwordInput,
         bodyContainer,
+        clearCacheButton,
     };
 }
 
@@ -100,6 +106,11 @@ function registerEvents() {
         "click",
         () => copyToClipboard(dom.passwordInput.value)
     );
+
+    dom.clearCacheButton.addEventListener(
+        "click",
+        clearData
+    );
 }
 
 /**
@@ -109,6 +120,8 @@ async function bootstrap() {
     await setDataToGeneratePassword();
     registerEvents();
 }
+
+
 
 bootstrap().catch((error) => {
     console.error(
