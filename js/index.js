@@ -6,7 +6,8 @@ const DOM_IDS = {
     GENERATE_BUTTON: "btnGeneratePassword",
     PASSWORD_INPUT: "inputGeneratedPassword",
     BODY_CONTAINER: "bodyContainer",
-    CLEAR_CACHE: "clearWebCache"
+    CLEAR_CACHE: "clearWebCache",
+    FORM_BODY: "passwordFormContainer",
 };
 
 const dom = initializeDom();
@@ -36,9 +37,14 @@ function initializeDom() {
         DOM_IDS.CLEAR_CACHE
     )
 
+    const passwordFormContainer = document.getElementById(
+        DOM_IDS.FORM_BODY
+    )
 
 
-    if (!generateButton || !passwordInput || !bodyContainer || !clearCacheButton) {
+    if (!generateButton || !passwordInput
+        || !bodyContainer || !clearCacheButton
+        || !passwordFormContainer) {
         throw new Error(
             "No fue posible inicializar los elementos requeridos del DOM."
         );
@@ -49,6 +55,7 @@ function initializeDom() {
         passwordInput,
         bodyContainer,
         clearCacheButton,
+        passwordFormContainer
     };
 }
 
@@ -107,10 +114,11 @@ function registerEvents() {
         () => copyToClipboard(dom.passwordInput.value)
     );
 
-    dom.clearCacheButton.addEventListener(
-        "click",
-        clearData
-    );
+    dom.clearCacheButton.addEventListener("click", () => {
+        dom.passwordFormContainer.reset();
+        dom.passwordInput.value = "";
+        clearData();
+    });
 }
 
 /**
