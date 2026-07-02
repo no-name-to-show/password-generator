@@ -14,7 +14,19 @@ const LEET_REPLACEMENTS = {
 };
 
 /** Símbolos disponibles para insertar en la contraseña. @type {string[]} */
-const PASSWORD_SYMBOLS = ["@", "#", "$", "%", "&", "*"];
+const PASSWORD_SYMBOLS = [
+    "@",
+    "#",
+    "$",
+    "%",
+    "&",
+    "*",
+    "!",
+    "+",
+    "=",
+    "_",
+    "-"
+];
 
 /**
  * Símbolos actualmente seleccionados por el usuario (persisten entre generaciones).
