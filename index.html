@@ -27,7 +27,11 @@
     <meta property="og:url" content="https://no-name-to-show.github.io/password-generator/">
     <meta property="og:image"
         content="https://no-name-to-show.github.io/password-generator/assets/web-icon/PasswordGenerator.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Password Generator app preview">
     <meta property="og:site_name" content="Password Generator">
+    <meta property="og:locale" content="en_US">
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
@@ -35,6 +39,7 @@
     <meta name="twitter:description" content="Generate secure, memorable, and customizable passwords instantly.">
     <meta name="twitter:image"
         content="https://no-name-to-show.github.io/password-generator/assets/web-icon/PasswordGenerator.png">
+    <meta name="twitter:image:alt" content="Password Generator app preview">
 
     <!-- Theme Color -->
     <meta name="theme-color" content="#0f172a">
@@ -58,7 +63,18 @@
             <header>
                 <h2>Get Your Password</h2>
             </header>
+            <div class="symbol-panel-container">
+                <div class="choice-panel" id="symbolChoicePanel"></div>
 
+                <label>
+                    <input type="checkbox" id="selectAllSymbols"> Seleccionar todo
+                </label>
+
+                <div class="symbol-panel-options-container">
+                    <button type="button" id="saveSymbolsBtn">Guardar</button>
+                    <button type="button" id="cancelSymbolsBtn">Cancelar</button>
+                </div>
+            </div>
             <form class="password-generator-main-container" id="passwordFormContainer">
                 <fieldset>
                     <div class="form-menu">
@@ -75,6 +91,17 @@
                                 <path d="M14 11l0 6" />
                                 <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
                                 <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                            </svg>
+                        </a>
+                        <a href="#" id="symbolPanelBtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M4 6l16 0" />
+                                <path d="M4 12l16 0" />
+                                <path d="M4 18l16 0" />
                             </svg>
                         </a>
                     </div>
