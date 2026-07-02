@@ -1,5 +1,5 @@
 /** Clave utilizada para almacenar el listado de palabras en localStorage. */
-const WORDS_CACHE_KEY = "words";
+const WORDS_CACHE_KEY = "words_";
 
 /** Ruta del archivo fuente con el listado de palabras. */
 const WORDS_SOURCE_PATH = "./json/wordList.json";
@@ -27,7 +27,13 @@ export async function setDataToGeneratePassword() {
 
         const data = await response.json();
 
-        saveWordsToCache(data.words);
+        if (!Array.isArray(data.words_)) {
+            throw new Error(
+                "El archivo de palabras no contiene un listado válido."
+            );
+        }
+
+        saveWordsToCache(data.words_);
     } catch (error) {
         console.error(
             "No fue posible cargar el listado de palabras:",
