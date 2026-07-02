@@ -1,8 +1,15 @@
-const WORDS_CACHE_KEY = "words_";
+/** Clave utilizada para almacenar el listado de palabras en localStorage. */
+const WORDS_CACHE_KEY = "words";
+
+/** Ruta del archivo fuente con el listado de palabras. */
 const WORDS_SOURCE_PATH = "./json/wordList.json";
 
 /**
- * Carga y almacena las palabras en caché si aún no existen.
+ * Carga el listado de palabras desde el archivo fuente y lo guarda en caché,
+ * solo si aún no existe una caché válida.
+ *
+ * @returns {Promise<void>}
+ * @throws {Error} Si la petición falla o la respuesta no es exitosa.
  */
 export async function setDataToGeneratePassword() {
     if (hasWordsCache()) {
@@ -20,7 +27,7 @@ export async function setDataToGeneratePassword() {
 
         const data = await response.json();
 
-        saveWords(data.words_);
+        saveWordsToCache(data.words);
     } catch (error) {
         console.error(
             "No fue posible cargar el listado de palabras:",
@@ -52,11 +59,21 @@ export function getWords() {
 }
 
 /**
- * Guarda las palabras en caché.
+ * Elimina la caché existente y vuelve a cargar el listado de palabras desde el origen.
+ *
+ * @returns {Promise<void>}
+ */
+export async function clearData() {
+    localStorage.clear();
+    await setDataToGeneratePassword();
+}
+
+/**
+ * Guarda el listado de palabras en caché.
  *
  * @param {string[]} words
  */
-function saveWords(words) {
+function saveWordsToCache(words) {
     localStorage.setItem(
         WORDS_CACHE_KEY,
         JSON.stringify(words)
@@ -64,20 +81,10 @@ function saveWords(words) {
 }
 
 /**
- * Indica si existe una caché válida.
+ * Indica si existe una caché válida de palabras.
  *
  * @returns {boolean}
  */
 function hasWordsCache() {
     return localStorage.getItem(WORDS_CACHE_KEY) !== null;
-}
-
-
-/**
- * Se borra la data antigua y se setea la nueva
- */
-
-export function clearData(){
-    localStorage.clear();
-    setDataToGeneratePassword();
 }
