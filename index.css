@@ -93,18 +93,74 @@ body {
             font-weight: 500;
         }
 
+        .neon-input-wrapper {
+            position: relative;
+            width: 100%;
+            padding: 2px;
+            border-radius: 16px;
+            overflow: hidden;
+            isolation: isolate;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 150%;
+                aspect-ratio: 1 / 1;
+                z-index: -2;
+
+                background: conic-gradient(
+                        #3b82f6 0deg,
+                        #22d3ee 90deg,
+                        #3b82f6 180deg,
+                        #0f172a 270deg,
+                        #3b82f6 360deg);
+
+                animation: neon-spin 5s linear infinite;
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 150%;
+                aspect-ratio: 1 / 1;
+                z-index: -3;
+
+                background: conic-gradient(
+                        #3b82f6 0deg,
+                        #22d3ee 90deg,
+                        #3b82f6 180deg,
+                        #0f172a 270deg,
+                        #3b82f6 360deg);
+
+                filter: blur(16px);
+                opacity: 0.55;
+
+                animation: neon-spin 3s linear infinite;
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+        }
+
         input {
+            position: relative;
+            z-index: 1;
+
+            width: 100%;
             background: #020617;
             color: white;
-            border: 1px solid #334155;
+            border: none;
             border-radius: 14px;
             padding: 1rem;
             font-size: 1rem;
             transition: 0.3s ease;
+            cursor: pointer;
 
             &:focus {
                 outline: none;
-                border-color: #3b82f6;
 
                 box-shadow:
                     0 0 0 4px rgba(59, 130, 246, 0.15);
@@ -118,8 +174,8 @@ body {
                 color: #475569;
             }
         }
-
-        input:hover {
+        
+        input:hover{
             cursor: pointer;
         }
 
@@ -166,6 +222,11 @@ body {
     }
 }
 
+@keyframes neon-spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
 a {
     color: #64748b;
     font-size: 0.9rem;
@@ -447,4 +508,29 @@ footer {
 
 button {
     cursor: pointer;
+}
+
+.tooltip {
+    position: relative;
+}
+
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #222;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s;
+    font-size: 12px;
+}
+
+.tooltip:hover::after {
+    opacity: 1;
 }
