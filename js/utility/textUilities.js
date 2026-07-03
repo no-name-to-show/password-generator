@@ -81,7 +81,7 @@ export function generatePassword(words) {
  */
 function validateWords(words) {
     if (!Array.isArray(words) || words.length === 0) {
-        throw new Error("Se requiere un arreglo de palabras no vacío.");
+        throw new Error("A non-empty array of words is required.");
     }
 }
 
@@ -138,7 +138,7 @@ function applyRandomUppercase(value, probability = UPPERCASE_PROBABILITY) {
  */
 function insertRandomSymbol(value) {
     if (PASSWORD_SYMBOLS_SELECTED.length === 0) {
-        throw new Error("Selecciona al menos un símbolo antes de generar la contraseña.");
+        throw new Error("Select at least one symbol before generating the password.");
     }
 
     const symbol = getRandomItem(PASSWORD_SYMBOLS_SELECTED);
@@ -205,9 +205,7 @@ export function initSymbolPanel({ container, selectAllCheckbox, saveButton, canc
  */
 export function selectSymbolToPassword() {
     if (!symbolPanelDom) {
-        throw new Error(
-            "El panel de símbolos no fue inicializado. Llama a initSymbolPanel() antes."
-        );
+        throw new Error("The symbol panel has not been initialized. Call initSymbolPanel() first.");
     }
 
     openSymbolPanel();
