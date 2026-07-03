@@ -245,7 +245,7 @@ a {
 }
 
 /* Agrupa los <a> con ícono para que queden juntos a la derecha */
-.form-menu>a {
+.form-menu>div>a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -276,6 +276,20 @@ a {
     }
 }
 
+/* Responsive: en pantallas chicas, tarjetas más angostas y menos padding */
+@media (max-width: 680px) {
+    .form-menu {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 1rem;
+    }
+    
+    .form-menu div{
+        display: flex;
+        justify-content: right;
+        width: 100%;
+    }
+}
 .alert-container {
     position: fixed;
     bottom: 1rem;
