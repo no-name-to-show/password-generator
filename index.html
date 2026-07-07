@@ -2,53 +2,75 @@
 <html lang="en">
 
 <head>
+    <!-- Basic -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Secure Password Generator | Open Source Password Creator</title>
+    <title>Secure Password Generator | Free Open-Source Password Creator</title>
 
     <meta name="description"
-        content="Generate secure, memorable, and customizable passwords instantly. Free and open-source password generator focused on security and usability.">
-
-    <meta name="keywords"
-        content="password generator, secure password generator, random password, strong password, memorable password, cybersecurity, password creator">
+        content="Generate secure, memorable, and customizable passwords instantly. Free and open-source password generator focused on security, privacy, and usability.">
 
     <meta name="author" content="AJ">
     <meta name="robots" content="index, follow">
+    <meta name="color-scheme" content="light dark">
 
-    <!-- Canonical URL -->
+    <!-- Canonical -->
     <link rel="canonical" href="https://no-name-to-show.github.io/password-generator/">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Password Generator">
-    <meta property="og:description"
-        content="Generate secure, memorable, and customizable passwords instantly with this free open-source password generator.">
-    <meta property="og:url" content="https://no-name-to-show.github.io/password-generator/">
-    <meta property="og:image"
-        content="https://no-name-to-show.github.io/password-generator/assets/web-icon/PasswordGenerator.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Password Generator app preview">
     <meta property="og:site_name" content="Password Generator">
     <meta property="og:locale" content="en_US">
 
+    <meta property="og:title" content="Secure Password Generator | Free Open-Source Password Creator">
+
+    <meta property="og:description"
+        content="Generate secure, memorable, and customizable passwords instantly with this free open-source password generator.">
+
+    <meta property="og:url" content="https://no-name-to-show.github.io/password-generator/">
+
+    <meta property="og:image"
+        content="https://no-name-to-show.github.io/password-generator/assets/web-icon/PasswordGenerator.png">
+
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Preview of the Password Generator web application">
+
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Password Generator">
+
+    <meta name="twitter:title" content="Secure Password Generator | Free Open-Source Password Creator">
+
     <meta name="twitter:description" content="Generate secure, memorable, and customizable passwords instantly.">
+
     <meta name="twitter:image"
         content="https://no-name-to-show.github.io/password-generator/assets/web-icon/PasswordGenerator.png">
-    <meta name="twitter:image:alt" content="Password Generator app preview">
 
-    <!-- Theme Color -->
+    <meta name="twitter:image:alt" content="Preview of the Password Generator web application">
+
+    <!-- Browser Theme -->
     <meta name="theme-color" content="#0f172a">
 
-    <!-- Favicon -->
-    <link rel="icon" href="./assets/web-icon/PasswordGenerator.png" type="image/png">
+    <!-- Favicons -->
+    <link rel="icon" href="./assets/favicon_io/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon_io/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon_io/apple-touch-icon.png">
+    <link rel="manifest" href="./assets/favicon_io/site.webmanifest">
 
+    <!-- Styles -->
     <link rel="stylesheet" href="index.css">
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G9YTXSY2NK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-G9YTXSY2NK');
+</script>
 
 <body id="bodyContainer">
 
@@ -86,7 +108,8 @@
                                 data-tooltip="Clear generated password">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
+                                    stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <path d="M4 7l16 0" />
                                     <path d="M10 11l0 6" />
@@ -95,7 +118,7 @@
                                     <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
                                 </svg>
                             </a>
-    
+
                             <a href="#" id="symbolPanelBtn" aria-label="Choose password symbols" class=" tooltip"
                                 data-tooltip="Choose password symbols">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
