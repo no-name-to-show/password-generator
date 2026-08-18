@@ -2,6 +2,10 @@
 // CONFIGURACIÓN / CONSTANTES
 // ============================================================
 
+/** Cantidad mínima y máxima de contraseñas que se pueden generar a la vez. */
+const MIN_PASSWORD_COUNT = 1;
+const MAX_PASSWORD_COUNT = 10;
+
 /**
  * Mapa de sustituciones tipo "leet speak" (letra -> número visualmente similar).
  * @type {Record<string, string>}
@@ -26,6 +30,7 @@ const PASSWORD_SYMBOLS = [
     "=",
     "_"
 ];
+
 
 /**
  * Símbolos actualmente seleccionados por el usuario (persisten entre generaciones).
@@ -298,4 +303,32 @@ function openSymbolPanel() {
 /** Oculta el panel de selección de símbolos (quita la clase `.show`). */
 function closeSymbolPanel() {
     document.querySelector('.symbol-panel-container').classList.remove('show');
+}
+
+
+/**
+ * Genera múltiples contraseñas de una sola vez.
+ *
+ * @param {string[]} words - Listado de palabras candidatas.
+ * @param {number} [count] - Cantidad de contraseñas a generar (se limita entre {@link MIN_PASSWORD_COUNT} y {@link MAX_PASSWORD_COUNT}).
+ * @returns {string[]}
+ */
+export function generatePasswords(words, count = 1) {
+    const safeCount = clampPasswordCount(count);
+
+    return Array.from({ length: safeCount }, () => generatePassword(words));
+}
+
+/**
+ * Limita la cantidad solicitada al rango permitido.
+ *
+ * @param {number} count
+ * @returns {number}
+ */
+function clampPasswordCount(count) {
+    const parsed = Number(count);
+
+    if (!Number.isFinite(parsed)) return MIN_PASSWORD_COUNT;
+
+    return Math.min(Math.max(Math.trunc(parsed), MIN_PASSWORD_COUNT), MAX_PASSWORD_COUNT);
 }

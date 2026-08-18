@@ -1,5 +1,5 @@
 import { setDataToGeneratePassword, getWords, clearData } from "./getData.js";
-import { generatePassword, selectSymbolToPassword, initSymbolPanel } from "./utility/textUilities.js";
+import { generatePassword, generatePasswords, selectSymbolToPassword, initSymbolPanel } from "./utility/textUilities.js";
 import { alertContainer, alertErrorContainer } from "./container/alert-container.js";
 
 const DOM_IDS = {
@@ -13,6 +13,8 @@ const DOM_IDS = {
     SYMBOL_PANEL_SELECT_ALL: "selectAllSymbols",
     SYMBOL_PANEL_SAVE_BUTTON: "saveSymbolsBtn",
     SYMBOL_PANEL_CANCEL_BUTTON: "cancelSymbolsBtn",
+    PASSWORD_COUNT_INPUT: "passwordCount",
+    PASSWORD_RESULTS_CONTAINER: "passwordResultsContainer",
 };
 
 const dom = initializeDom();
@@ -24,7 +26,6 @@ const dom = initializeDom();
  *
  * @returns {{
  *   generateButton: HTMLButtonElement,
- *   passwordInput: HTMLInputElement,
  *   bodyContainer: HTMLElement,
  *   clearCacheButton: HTMLAnchorElement,
  *   passwordFormContainer: HTMLFormElement,
@@ -37,7 +38,8 @@ const dom = initializeDom();
  */
 function initializeDom() {
     const generateButton = document.getElementById(DOM_IDS.GENERATE_BUTTON);
-    const passwordInput = document.getElementById(DOM_IDS.PASSWORD_INPUT);
+    const passwordCountInput = document.getElementById(DOM_IDS.PASSWORD_COUNT_INPUT);
+    const passwordResultsContainer = document.getElementById(DOM_IDS.PASSWORD_RESULTS_CONTAINER);
     const bodyContainer = document.getElementById(DOM_IDS.BODY_CONTAINER);
     const clearCacheButton = document.getElementById(DOM_IDS.CLEAR_CACHE_BUTTON);
     const passwordFormContainer = document.getElementById(DOM_IDS.FORM_CONTAINER);
@@ -47,11 +49,12 @@ function initializeDom() {
     const symbolPanelCancelButton = document.getElementById(DOM_IDS.SYMBOL_PANEL_CANCEL_BUTTON);
     const symbolPanelSaveButton = document.getElementById(DOM_IDS.SYMBOL_PANEL_SAVE_BUTTON);
 
-    if (!generateButton || !passwordInput
+    if (!generateButton || !passwordCountInput
         || !bodyContainer || !clearCacheButton
         || !passwordFormContainer || !symbolPanelButton
         || !symbolChoicePanel || !symbolPanelSelectAll
-        || !symbolPanelSaveButton || !symbolPanelCancelButton) {
+        || !symbolPanelSaveButton || !symbolPanelCancelButton
+        || !passwordResultsContainer) {
         throw new Error(
             "No fue posible inicializar los elementos requeridos del DOM."
         );
@@ -59,7 +62,6 @@ function initializeDom() {
 
     return {
         generateButton,
-        passwordInput,
         bodyContainer,
         clearCacheButton,
         passwordFormContainer,
@@ -68,6 +70,8 @@ function initializeDom() {
         symbolPanelSelectAll,
         symbolPanelCancelButton,
         symbolPanelSaveButton,
+        passwordCountInput,
+        passwordResultsContainer,
     };
 }
 
@@ -96,9 +100,7 @@ async function copyToClipboard(text) {
 }
 
 /**
- * Genera una contraseña a partir de las palabras disponibles y la muestra en pantalla.
- * Si no hay símbolos seleccionados (o cualquier otro error de generación), se informa
- * al usuario mediante una alerta en vez de romper la ejecución en silencio.
+ * Genera una o varias contraseñas según lo indicado por el usuario y las muestra en pantalla.
  *
  * @returns {void}
  */
@@ -115,14 +117,52 @@ function handleGeneratePassword() {
         return;
     }
 
+    const count = getRequestedPasswordCount();
+
     try {
-        const password = generatePassword(words);
-        dom.passwordInput.value = password;
+        const passwords = generatePasswords(words, count);
+        renderPasswords(passwords);
     } catch (error) {
         dom.bodyContainer.appendChild(
             alertErrorContainer(error.message)
         );
     }
+}
+
+/**
+ * Lee y normaliza la cantidad de contraseñas solicitada por el usuario.
+ *
+ * @returns {number}
+ */
+function getRequestedPasswordCount() {
+    const MIN = 1;
+    const MAX = 10;
+    const value = Number(dom.passwordCountInput.value);
+
+    if (!Number.isFinite(value)) return MIN;
+
+    return Math.min(Math.max(Math.trunc(value), MIN), MAX);
+}
+
+/**
+ * Pinta la lista de contraseñas generadas. Cada una es clickeable para copiarla.
+ *
+ * @param {string[]} passwords
+ * @returns {void}
+ */
+function renderPasswords(passwords) {
+    dom.passwordResultsContainer.innerHTML = "";
+
+    passwords.forEach((password) => {
+        const item = document.createElement("div");
+        item.classList.add("password-result-item");
+        item.textContent = password;
+        item.title = "Click para copiar";
+
+        item.addEventListener("click", () => copyToClipboard(password));
+
+        dom.passwordResultsContainer.appendChild(item);
+    });
 }
 
 /**
@@ -137,17 +177,12 @@ function registerEvents() {
         handleGeneratePassword
     );
 
-    dom.passwordInput.addEventListener(
-        "click",
-        () => copyToClipboard(dom.passwordInput.value)
-    );
-
     // Es un <a href="#">: sin preventDefault, el navegador salta al top de la página.
     dom.clearCacheButton.addEventListener("click", async (event) => {
         event.preventDefault();
 
         dom.passwordFormContainer.reset();
-        dom.passwordInput.value = "";
+        dom.passwordResultsContainer.innerHTML = '<p class="password-results-placeholder">Presiona "Generate" para comenzar</p>';
 
         try {
             await clearData();

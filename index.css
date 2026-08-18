@@ -110,8 +110,7 @@ body {
                 aspect-ratio: 1 / 1;
                 z-index: -2;
 
-                background: conic-gradient(
-                        #3b82f6 0deg,
+                background: conic-gradient(#3b82f6 0deg,
                         #22d3ee 90deg,
                         #3b82f6 180deg,
                         #0f172a 270deg,
@@ -130,8 +129,7 @@ body {
                 aspect-ratio: 1 / 1;
                 z-index: -3;
 
-                background: conic-gradient(
-                        #3b82f6 0deg,
+                background: conic-gradient(#3b82f6 0deg,
                         #22d3ee 90deg,
                         #3b82f6 180deg,
                         #0f172a 270deg,
@@ -174,8 +172,8 @@ body {
                 color: #475569;
             }
         }
-        
-        input:hover{
+
+        input:hover {
             cursor: pointer;
         }
 
@@ -227,6 +225,7 @@ body {
         transform: translate(-50%, -50%) rotate(360deg);
     }
 }
+
 a {
     color: #64748b;
     font-size: 0.9rem;
@@ -283,8 +282,8 @@ a {
         flex-direction: column-reverse;
         gap: 1rem;
     }
-    
-    .form-menu div{
+
+    .form-menu div {
         display: flex;
         justify-content: right;
         width: 100%;
@@ -548,4 +547,62 @@ button {
 
 .tooltip:hover::after {
     opacity: 1;
+}
+
+.password-count-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.2rem;
+
+    label {
+        color: #cbd5e1;
+        font-weight: 500;
+    }
+
+    input[type="number"] {
+        width: 70px;
+        background: #020617;
+        color: white;
+        border: 1px solid #334155;
+        border-radius: 10px;
+        padding: 0.5rem;
+        text-align: center;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+        }
+    }
+}
+
+.password-results-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.password-results-placeholder {
+    color: #475569;
+    text-align: center;
+    padding: 1rem;
+}
+
+.password-result-item {
+    background: #020617;
+    color: white;
+    border-radius: 14px;
+    padding: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    word-break: break-all;
+    transition: 0.2s ease;
+
+    &:hover {
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
 }

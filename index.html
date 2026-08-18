@@ -52,6 +52,9 @@
     <!-- Browser Theme -->
     <meta name="theme-color" content="#0f172a">
 
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' data: https:; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; connect-src 'self' https://www.google-analytics.com;">
+
     <!-- Favicons -->
     <link rel="icon" href="./assets/favicon_io/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon_io/favicon-32x32.png">
@@ -61,15 +64,16 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Pixel&display=swap" rel="stylesheet">
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-G9YTXSY2NK"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-G9YTXSY2NK');
+    gtag('config', 'G-G9YTXSY2NK');
 </script>
 
 <body id="bodyContainer">
@@ -134,8 +138,13 @@
                         </div>
                     </div>
 
-                    <div class="neon-input-wrapper">
-                        <input type="text" id="inputGeneratedPassword" readonly placeholder="Click 'Generate' to start">
+                    <div class="password-count-wrapper">
+                        <label for="passwordCount">Cantidad de contraseñas</label>
+                        <input type="number" id="passwordCount" min="1" max="10" value="1">
+                    </div>
+
+                    <div class="password-results-container" id="passwordResultsContainer">
+                        <p class="password-results-placeholder">Presiona "Generate" para comenzar</p>
                     </div>
 
                     <small class="password-note">
